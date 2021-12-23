@@ -7,8 +7,8 @@ function useMarvelData(parameter) {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const public = Config.PUBLIC_KEY;
-  const private = Config.PRIVATE_KEY;
+  const publicKey = Config.PUBLIC_KEY;
+  const privateKey = Config.PRIVATE_KEY;
   const ts = Config.TS; // timestamp default maybe change later
   const url = Config.URL;
   //example url
@@ -18,9 +18,10 @@ function useMarvelData(parameter) {
     async function fetchMarvel() {
       try {
         const response = await axios.get(
-          `${url}/${parameter}?ts=${ts}&apikey=${public}&hash=${private}`,
+          `${url}/${parameter}?ts=${ts}&apikey=${publicKey}&hash=${privateKey}`,
         );
         //const res = await response.json();
+        console.log(response);
         setError(null);
 
         setData(response.data);
