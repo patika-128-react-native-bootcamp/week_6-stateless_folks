@@ -8,20 +8,22 @@ function useMarvelData(parameter) {
   const [isLoading, setIsLoading] = useState(true);
 
   const publicKey = Config.PUBLIC_KEY;
-  const privateKey = Config.PRIVATE_KEY;
-  const ts = Config.TS; // timestamp default maybe change later
+  const hash = Config.HASH;
+  const ts = Config.T; // timestamp default maybe change later
   const url = Config.URL;
+
   //example url
   // http://gateway.marvel.com/v1/public/comics?ts=1&apikey=1234&hash=ffd275c5130566a2916217b101f26150
   useEffect(() => {
     setIsLoading(true);
     async function fetchMarvel() {
       try {
-        const response = await axios.get(
-          `${url}/${parameter}?ts=${ts}&apikey=${publicKey}&hash=${privateKey}`,
-        );
+        console.log('response');
+        const fetchData = `${url}/${parameter}?ts=${ts}&apikey=${publicKey}&hash=${hash}`;
+        console.log(fetchData);
+        const response = await axios.get(fetchData);
         //const res = await response.json();
-        console.log(response);
+        console.log('response1');
         setError(null);
 
         setData(response.data);
