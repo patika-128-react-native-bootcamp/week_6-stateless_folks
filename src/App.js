@@ -1,5 +1,5 @@
-import React from 'react';
-import {View, Text} from 'react-native';
+import React from "react";
+import { View, Text } from "react-native";
 
 /**
  * Selamlar. Bu ödevde sizden Marvel API'nı kullanarak bir uygulama yapmanız isteniyor.
@@ -21,7 +21,11 @@ import {View, Text} from 'react-native';
 export default function App() {
   return (
     <View>
-      <Text>{/* code is here... */}</Text>
+      <Text>This is a test</Text>
+      <Text>This is a test</Text>
+      <Text>This is a test</Text>
+      <Text>This is a test</Text>
+      <Text>This is a test</Text>
     </View>
   );
 }
