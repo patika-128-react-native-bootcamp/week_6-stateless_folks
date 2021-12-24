@@ -4,7 +4,7 @@ import ThemeProvider, {
   ThemeContext,
 } from '../../context/ThemeContext/ThemeProvider';
 
-export default function Settings() {
+export default function SetingsScreen() {
   const {state, dispatch} = useContext(ThemeContext);
 
   function darkTheme() {

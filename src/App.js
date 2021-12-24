@@ -1,5 +1,10 @@
-import React from 'react';
-import {View, Text} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, Text, Appearance, Button} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import Config from 'react-native-config';
+import useMarvelData from './hooks/ApiHelperHook';
+import Settings from './pages/SettingsScreen';
+import ThemeProvider from './context/ThemeContext/ThemeProvider';
 
 /**
  * Selamlar. Bu ödevde sizden Marvel API'nı kullanarak bir uygulama yapmanız isteniyor.
@@ -19,9 +24,40 @@ import {View, Text} from 'react-native';
  */
 
 export default function App() {
+  const [theme, setTheme] = useState(Appearance.getColorScheme());
+  const storeData = async value => {
+    try {
+      await AsyncStorage.setItem('asd', 'hicabi');
+    } catch (e) {
+      // saving error
+    }
+  };
+
+  const getData = async () => {
+    try {
+      const value = await AsyncStorage.getItem('asd');
+      if (value !== null) {
+        // value previously stored
+      }
+    } catch (e) {
+      // error reading value
+    }
+  };
+  const [parameter, setParameter] = useState(null);
+  useEffect(() => setParameter('characters'), []);
+  const {data, loading, error} = useMarvelData(parameter);
+
   return (
-    <View>
-      <Text>{/* code is here... */}</Text>
-    </View>
+    <ThemeProvider>
+      <View>
+        <Text>
+          {'hello'} {theme}
+        </Text>
+        <Button title="asd" onPress={storeData} />
+        <Button title="asdss" onPress={getData} />
+
+        <Settings />
+      </View>
+    </ThemeProvider>
   );
 }
