@@ -59,5 +59,6 @@ export default function App() {
         <Settings />
       </View>
     </ThemeProvider>
+
   );
 }
