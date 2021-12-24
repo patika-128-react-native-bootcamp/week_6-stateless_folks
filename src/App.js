@@ -5,6 +5,7 @@ import Config from 'react-native-config';
 import useMarvelData from './hooks/ApiHelperHook';
 import Settings from './pages/SettingsScreen';
 import ThemeProvider from './context/ThemeContext/ThemeProvider';
+import Navigation from './navigation';
 
 /**
  * Selamlar. Bu ödevde sizden Marvel API'nı kullanarak bir uygulama yapmanız isteniyor.
@@ -48,17 +49,10 @@ export default function App() {
   const {data, loading, error} = useMarvelData(parameter);
 
   return (
-    <ThemeProvider>
-      <View>
-        <Text>
-          {'hello'} {theme}
-        </Text>
-        <Button title="asd" onPress={storeData} />
-        <Button title="asdss" onPress={getData} />
-
-        <Settings />
-      </View>
-    </ThemeProvider>
-
+    <View style={{flex: 1}}>
+      <ThemeProvider>
+        <Navigation />
+      </ThemeProvider>
+    </View>
   );
 }
