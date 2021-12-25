@@ -1,23 +1,13 @@
 import React, {useContext} from 'react';
 import {View, Text, Button} from 'react-native';
-import ThemeProvider, {
-  ThemeContext,
-} from '../../context/ThemeContext/ThemeProvider';
 
+import themes from '../../styles/theme/theme';
+import SettingsComponent from '../../components/SettingsComponent';
+import {useTheme} from '@react-navigation/native';
 export default function SetingsScreen() {
-  const {state, dispatch} = useContext(ThemeContext);
-
-  function darkTheme() {
-    dispatch({type: 'dark'});
-  }
-  function lightTheme() {
-    dispatch({type: 'light'});
-  }
   return (
     <View>
-      <Button onPress={darkTheme} title="dark" />
-      <Button onPress={lightTheme} title="light" />
-      <Text>{state.theme}</Text>
+      <SettingsComponent />
     </View>
   );
 }
