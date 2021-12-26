@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     color: "white",
   },
   line: {
-    width: 90,
+    width: 70,
     height: 4,
     backgroundColor: "white",
     marginVertical: 20,
