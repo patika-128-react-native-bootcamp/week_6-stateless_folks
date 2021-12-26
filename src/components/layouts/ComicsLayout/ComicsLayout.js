@@ -9,13 +9,18 @@ export default function ComicsLayout() {
   //console.log(comics.data.results.length);
   function renderItem({item}) {
     return (
-      item.images[0] &&
+      item.thumbnail &&
       item.textObjects[0] && (
         <ComicCard
           key={item.id}
           comicName={item.title}
           comicDetail={item.textObjects[0].text}
-          imageUrl={item.images[0].path + '.' + item.images[0].extension}
+          imageUrl={
+            item.thumbnail.path +
+            '/standard_fantastic' +
+            '.' +
+            item.thumbnail.extension
+          }
         />
       )
     );
