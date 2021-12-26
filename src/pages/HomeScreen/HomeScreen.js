@@ -1,10 +1,16 @@
-import React from 'react';
-import {View, Text} from 'react-native';
+import React from "react";
+import { SafeAreaView } from "react-native";
+
+import CharactersLayout from "../../components/layouts/CharactersLayout";
+import ComicsLayout from "../../components/layouts/ComicsLayout";
+import SliderLayout from "../../components/layouts/SliderLayout";
 
 export default function HomeScreen() {
   return (
-    <View>
-      <Text></Text>
-    </View>
+    <SafeAreaView>
+      <SliderLayout />
+      <CharactersLayout />
+      <ComicsLayout />
+    </SafeAreaView>
   );
 }
