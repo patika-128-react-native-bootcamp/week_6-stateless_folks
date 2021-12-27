@@ -1,38 +1,49 @@
-import React from "react";
+import {useNavigation} from '@react-navigation/native';
+import React from 'react';
 import {
   View,
   Text,
   FlatList,
   ActivityIndicator,
   StyleSheet,
-} from "react-native";
+  TouchableOpacity,
+} from 'react-native';
 
-import Header from "../../../components/Header";
-import useMarvelData from "../../../hooks/ApiHelperHook";
-import theme from "../../../styles/theme/theme";
-import ComicCard from "../../Cards/ComicCard";
+import Header from '../../../components/Header';
+import useMarvelData from '../../../hooks/ApiHelperHook';
+import theme from '../../../styles/theme/theme';
+import ComicCard from '../../Cards/ComicCard';
 
 export default function ComicsLayout() {
-  const { data: comics, error, isLoading } = useMarvelData("comics");
-  function renderItem({ item }) {
+  const {data: comics, error, isLoading} = useMarvelData('comics');
+  function renderItem({item}) {
     return (
       item.thumbnail &&
       item.textObjects[0] && (
-        <ComicCard
-          comicName={item.title}
-          comicDetail={item.textObjects[0].text}
-          imageUrl={
-            item.thumbnail.path +
-            "/standard_fantastic" +
-            "." +
-            item.thumbnail.extension
-          }
-        />
+        <TouchableOpacity
+          onPress={() => {
+            handleNavigation(item);
+          }}>
+          <ComicCard
+            comicName={item.title}
+            comicDetail={item.textObjects[0].text}
+            imageUrl={
+              item.thumbnail.path +
+              '/standard_fantastic' +
+              '.' +
+              item.thumbnail.extension
+            }
+          />
+        </TouchableOpacity>
       )
     );
   }
 
   const extractId = (item, i) => `${item.id}__${i}`;
+  const navigation = useNavigation();
+  function handleNavigation(item) {
+    navigation.navigate('DetailScreen', {item});
+  }
   return (
     <View style={styles.container}>
       <Header title="Comics" icon="chevron-right" />
