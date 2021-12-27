@@ -1,13 +1,20 @@
-import React from 'react';
-import {View, Text, FlatList, ActivityIndicator} from 'react-native';
-import ComicCard from '../../ComicCard';
-import useMarvelData from '../../../hooks/ApiHelperHook';
+import React from "react";
+import {
+  View,
+  Text,
+  FlatList,
+  ActivityIndicator,
+  StyleSheet,
+} from "react-native";
+
+import Header from "../../../components/Header";
+import useMarvelData from "../../../hooks/ApiHelperHook";
+import theme from "../../../styles/theme/theme";
+import ComicCard from "../../Cards/ComicCard";
 
 export default function ComicsLayout() {
-  const {data, error, isLoading} = useMarvelData('comics');
-  const comics = data;
-  //console.log(comics.data.results.length);
-  function renderItem({item}) {
+  const { data: comics, error, isLoading } = useMarvelData("comics");
+  function renderItem({ item }) {
     return (
       item.thumbnail &&
       item.textObjects[0] && (
@@ -17,8 +24,8 @@ export default function ComicsLayout() {
           comicDetail={item.textObjects[0].text}
           imageUrl={
             item.thumbnail.path +
-            '/standard_fantastic' +
-            '.' +
+            "/standard_fantastic" +
+            "." +
             item.thumbnail.extension
           }
         />
@@ -26,9 +33,10 @@ export default function ComicsLayout() {
     );
   }
   return (
-    <View>
+    <View style={styles.container}>
+      <Header title="Comics" icon="chevron-right" />
       {isLoading ? (
-        <ActivityIndicator size="large" color="#0000ff" />
+        <ActivityIndicator size="large" color={theme.MAIN_RED} />
       ) : (
         <FlatList
           data={comics.data.results.slice(0, 7)}
@@ -39,3 +47,9 @@ export default function ComicsLayout() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    marginBottom: 20,
+  },
+});

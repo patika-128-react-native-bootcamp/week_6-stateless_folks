@@ -1,5 +1,5 @@
 import React from "react";
-import { SafeAreaView, StyleSheet } from "react-native";
+import { SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
 
 import CharactersLayout from "../../components/layouts/CharactersLayout";
 import ComicsLayout from "../../components/layouts/ComicsLayout";
@@ -8,13 +8,22 @@ import SliderLayout from "../../components/layouts/SliderLayout";
 export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.container}>
-      <SliderLayout />
-      <CharactersLayout />
-      <ComicsLayout />
+      <ScrollView>
+        <SliderLayout />
+        <View style={styles.innerContainer}>
+          <CharactersLayout />
+          <ComicsLayout />
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1 },
+  container: {
+    flex: 1,
+  },
+  innerContainer: {
+    paddingHorizontal: 20,
+  },
 });

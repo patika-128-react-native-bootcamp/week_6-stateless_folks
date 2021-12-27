@@ -43,5 +43,5 @@ export default function SliderLayout() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 0 },
+  container: {},
 });
