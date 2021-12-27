@@ -35,6 +35,7 @@ export default function CharactersLayout() {
           data={characters.data.results.slice(0, 7)}
           renderItem={renderItem}
           horizontal
+          showsHorizontalScrollIndicator={false}
         />
       )}
     </View>

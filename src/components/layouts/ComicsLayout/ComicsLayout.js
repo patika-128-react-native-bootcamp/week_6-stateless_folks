@@ -19,7 +19,6 @@ export default function ComicsLayout() {
       item.thumbnail &&
       item.textObjects[0] && (
         <ComicCard
-          key={item.id}
           comicName={item.title}
           comicDetail={item.textObjects[0].text}
           imageUrl={
@@ -32,6 +31,8 @@ export default function ComicsLayout() {
       )
     );
   }
+
+  const extractId = (item, i) => `${item.id}__${i}`;
   return (
     <View style={styles.container}>
       <Header title="Comics" icon="chevron-right" />
@@ -39,9 +40,11 @@ export default function ComicsLayout() {
         <ActivityIndicator size="large" color={theme.MAIN_RED} />
       ) : (
         <FlatList
+          keyExtractor={extractId}
           data={comics.data.results.slice(0, 7)}
           renderItem={renderItem}
           horizontal
+          showsHorizontalScrollIndicator={false}
         />
       )}
     </View>
