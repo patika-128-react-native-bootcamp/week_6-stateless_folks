@@ -1,11 +1,9 @@
-import React, {useState, useEffect, useContext} from 'react';
-import {View, Text, Appearance, Button, useColorScheme} from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import React from "react";
+import { StyleSheet } from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
-import useMarvelData from './hooks/ApiHelperHook';
-import {ThemeContext} from './context/ThemeContext/ThemeProvider';
-import ThemeProvider from './context/ThemeContext/ThemeProvider';
-import Navigation from './navigation';
+import ThemeProvider from "./context/ThemeContext/ThemeProvider";
+import Navigation from "./navigation";
 
 /**
  * Selamlar. Bu ödevde sizden Marvel API'nı kullanarak bir uygulama yapmanız isteniyor.
@@ -25,13 +23,15 @@ import Navigation from './navigation';
  */
 
 export default function App() {
-  const [theme, setTheme] = useState(Appearance.getColorScheme());
-
   return (
-    <View style={{flex: 1}}>
+    <GestureHandlerRootView style={styles.gestureContainer}>
       <ThemeProvider>
         <Navigation />
       </ThemeProvider>
-    </View>
+    </GestureHandlerRootView>
   );
 }
+
+const styles = StyleSheet.create({
+  gestureContainer: { flex: 1 },
+});
