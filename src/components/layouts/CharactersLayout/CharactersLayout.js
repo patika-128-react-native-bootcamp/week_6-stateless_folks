@@ -8,7 +8,6 @@ import theme from "../../../styles/theme/theme";
 
 export default function CharactersLayout() {
   const { data: characters, error, isLoading } = useMarvelData("characters");
-  console.log(characters);
   function renderItem({ item }) {
     return (
       item.thumbnail && (

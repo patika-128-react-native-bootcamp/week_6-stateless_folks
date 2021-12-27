@@ -6,7 +6,7 @@ import styles from "./CharacterCard.style";
 
 export default function CharacterCard({ title, image }) {
   const colorList = [
-    { offset: "55%", color: "#000", opacity: "0.75" },
+    { offset: "35%", color: "#000", opacity: "0.65" },
     { offset: "100%", color: "#000", opacity: "0" },
   ];
 
