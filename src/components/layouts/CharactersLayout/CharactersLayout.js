@@ -12,12 +12,13 @@ import useMarvelData from '../../../hooks/ApiHelperHook';
 import CharacterCard from '../../Cards/CharacterCard';
 import theme from '../../../styles/theme/theme';
 import {useNavigation} from '@react-navigation/native';
+import routes from '../../../navigation/routes';
 
 export default function CharactersLayout() {
   const {data: characters, error, isLoading} = useMarvelData('characters');
   const navigation = useNavigation();
   function handleNavigation(item) {
-    navigation.navigate('DetailScreen', {item});
+    navigation.navigate(routes.DETAIL_SCREEN, {item});
   }
   function renderItem({item}) {
     return (

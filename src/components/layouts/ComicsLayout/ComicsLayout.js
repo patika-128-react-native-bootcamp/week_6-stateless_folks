@@ -13,6 +13,7 @@ import Header from '../../../components/Header';
 import useMarvelData from '../../../hooks/ApiHelperHook';
 import theme from '../../../styles/theme/theme';
 import ComicCard from '../../Cards/ComicCard';
+import routes from '../../../navigation/routes';
 
 export default function ComicsLayout() {
   const {data: comics, error, isLoading} = useMarvelData('comics');
@@ -42,7 +43,7 @@ export default function ComicsLayout() {
   const extractId = (item, i) => `${item.id}__${i}`;
   const navigation = useNavigation();
   function handleNavigation(item) {
-    navigation.navigate('DetailScreen', {item});
+    navigation.navigate(routes.DETAIL_SCREEN, {item});
   }
   return (
     <View style={styles.container}>
