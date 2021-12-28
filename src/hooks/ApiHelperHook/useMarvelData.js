@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react';
 import axios from 'axios';
 import Config from 'react-native-config';
 
-function useMarvelData(parameter) {
+function useMarvelData(parameter, characterFinder) {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -18,7 +18,11 @@ function useMarvelData(parameter) {
     async function fetchMarvel() {
       try {
         const fetchData = `${url}/${parameter}?ts=${ts}&apikey=${publicKey}&hash=${hash}`;
-        const response = await axios.get(fetchData);
+        const fetchCharacter = `${url}/${parameter}&ts=${ts}&apikey=${publicKey}&hash=${hash}`;
+        console.log(fetchCharacter);
+        const response = await axios.get(
+          characterFinder ? fetchCharacter : fetchData,
+        );
         //const res = await response.json();
         setError(null);
         setData(response.data);
