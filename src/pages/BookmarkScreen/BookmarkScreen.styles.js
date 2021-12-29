@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 
 export default StyleSheet.create({
   container: {
@@ -8,6 +8,7 @@ export default StyleSheet.create({
     backgroundColor: "transparent",
   },
   bookmarkContainer: {
+    height: Dimensions.get("window").height / 2.4,
     marginVertical: 20,
     marginHorizontal: 15,
     padding: 15,

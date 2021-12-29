@@ -13,8 +13,7 @@ import { useTranslation } from "react-i18next";
 export default function BookmarkScreen() {
   const navigation = useNavigation();
   const { colors } = useTheme();
-  const { state, dispatch } = useContext(ThemeContext);
-  console.log(state.bookmarks);
+  const { state } = useContext(ThemeContext);
 
   const navigateToDetail = (item, type) => {
     navigation.navigate(routes.DETAIL_SCREEN, { item, type });
