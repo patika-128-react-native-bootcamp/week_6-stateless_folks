@@ -1,5 +1,17 @@
 {
-    "Change Theme": "Temayı Degiştir",
-    "Change Language": "Dili Değiştir",
-    "a": "tr"
-  }
+  "Change Theme": "Temayı Degiştir",
+  "Change Language": "Dili Değiştir",
+  "Home": "Ana Sayfa",
+  "Search": "Arama",
+  "Find": "Kahramanını Bul",
+  "Bookmarks": "Favoriler",
+  "Settings": "Ayarlar",
+  "Characters": "Karakterler",
+  "Comics": "Romanlar",
+  "Learn More": "İncele",
+  "No Result": "Sonuç bulunamadı",
+  "No Characters": "Karakter yok ",
+  "No Comics": "Roman yok",
+  "Dark": "Koyu",
+  "Light": "Açık"
+}

@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
-import Config from "react-native-config";
+import {useEffect, useState} from 'react';
+import axios from 'axios';
+import Config from 'react-native-config';
 
 function useMarvelData(parameter, apiType) {
   const [data, setData] = useState([]);
@@ -11,19 +11,15 @@ function useMarvelData(parameter, apiType) {
   const ts = Config.T; // timestamp default maybe change later
   const url = Config.URL;
 
-  //example url
-  // http://gateway.marvel.com/v1/public/comics?ts=1&apikey=1234&hash=ffd275c5130566a2916217b101f26150
   useEffect(() => {
     setIsLoading(true);
     async function fetchMarvel() {
       try {
         const fetchData = `${url}/${parameter}?ts=${ts}&apikey=${publicKey}&hash=${hash}`;
         const fetchCharacter = `${url}/${parameter}&ts=${ts}&apikey=${publicKey}&hash=${hash}`;
-        console.log(fetchCharacter);
         const response = await axios.get(
-          apiType === "character" ? fetchCharacter : fetchData
+          apiType === 'character' ? fetchCharacter : fetchData,
         );
-        //const res = await response.json();
         setError(null);
         setData(response.data);
         setIsLoading(false);
@@ -37,7 +33,7 @@ function useMarvelData(parameter, apiType) {
     fetchMarvel();
   }, [parameter]);
 
-  return { data, error, isLoading };
+  return {data, error, isLoading};
 }
 
 export default useMarvelData;

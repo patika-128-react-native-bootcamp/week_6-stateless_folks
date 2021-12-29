@@ -8,6 +8,7 @@ import StatusIndicator from "../../components/StatusIndicator";
 import theme from "../../styles/theme/theme";
 import styles from "./BookmarkScreen.styles";
 import routes from "../../navigation/routes";
+import { useTranslation } from "react-i18next";
 
 export default function BookmarkScreen() {
   const navigation = useNavigation();
@@ -24,7 +25,7 @@ export default function BookmarkScreen() {
       <SearchCard containerStyle={styles.card} searchData={item} />
     </TouchableOpacity>
   );
-
+  const { t } = useTranslation();
   return (
     <View style={styles.container}>
       <View style={styles.bookmarkContainer}>
@@ -35,7 +36,7 @@ export default function BookmarkScreen() {
               color: colors.text,
             },
           ]}>
-          Characters
+          {t("Characters")}
         </Text>
         <FlatList
           data={state.bookmarks.characters}
@@ -45,7 +46,7 @@ export default function BookmarkScreen() {
             <StatusIndicator
               color={theme.MAIN_GRAY}
               icon="delete-empty"
-              message={"No Characters"}
+              message={t("No Characters")}
               style={styles.statusIndicator}
             />
           }
@@ -59,7 +60,7 @@ export default function BookmarkScreen() {
               color: colors.text,
             },
           ]}>
-          Comics
+          {t("Comics")}
         </Text>
         <FlatList
           data={state.bookmarks.comics}
@@ -69,7 +70,7 @@ export default function BookmarkScreen() {
             <StatusIndicator
               color={theme.MAIN_GRAY}
               icon="delete-empty"
-              message={"No Characters"}
+              message={t("No Comics")}
               style={styles.statusIndicator}
             />
           }

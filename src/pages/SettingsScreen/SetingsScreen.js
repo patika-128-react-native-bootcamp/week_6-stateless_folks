@@ -1,9 +1,10 @@
 import React, { useContext, useEffect } from "react";
-import { SafeAreaView, Text, StyleSheet, Switch } from "react-native";
+import { SafeAreaView, Text, Switch } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import i18n from "../../language/i18n";
 
+import styles from "./SettingsScreen.style";
 import { DARK, LIGHT } from "../../context/ThemeContext/types";
 import { useTheme } from "@react-navigation/native";
 import SettingsCard from "../../components/Cards/SettingsCard/SettingsCard";
@@ -97,17 +98,3 @@ export default function SetingsScreen() {
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    padding: 15,
-  },
-  title: {
-    fontSize: 40,
-    fontWeight: "bold",
-  },
-  language: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-});
