@@ -50,9 +50,10 @@ export default function SetingsScreen() {
     dispatch({ type: LIGHT });
   }
 
-  function changeLanguage() {
+  async function changeLanguage() {
     setLang(!lang);
     i18n.changeLanguage(i18n.language === "en" ? "tr" : "en");
+    await AsyncStorage.setItem("lang", i18n.language);
   }
 
   return (

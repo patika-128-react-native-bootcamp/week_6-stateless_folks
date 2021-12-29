@@ -1,36 +1,41 @@
-import React, {useContext, useEffect} from 'react';
+import React, { useContext, useEffect } from "react";
 import {
   NavigationContainer,
   DefaultTheme,
   DarkTheme,
-} from '@react-navigation/native';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import HomeStack from './stacks/HomeStack';
-import SettingsScreen from '../pages/SettingsScreen';
-import routes from './routes';
-import {ThemeContext} from '../context/ThemeContext/ThemeProvider';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import BookmarkStack from './stacks/BookmarkStack/BookmarkStack';
-import SearchStack from './stacks/SearchStack/SearchStack';
-import theme from '../styles/theme/theme';
-import {useTranslation} from 'react-i18next';
+} from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import HomeStack from "./stacks/HomeStack";
+import SettingsScreen from "../pages/SettingsScreen";
+import routes from "./routes";
+import { ThemeContext } from "../context/ThemeContext/ThemeProvider";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import BookmarkStack from "./stacks/BookmarkStack/BookmarkStack";
+import SearchStack from "./stacks/SearchStack/SearchStack";
+import theme from "../styles/theme/theme";
+import { useTranslation } from "react-i18next";
 
 export default function Navigation() {
   const Tab = createBottomTabNavigator();
-  const {state, dispatch} = useContext(ThemeContext);
-  const {t, i18n} = useTranslation();
+  const { state, dispatch } = useContext(ThemeContext);
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
-    getData().then(data => {
+    getData("theme").then((data) => {
       if (data) {
-        dispatch({type: data});
+        dispatch({ type: data });
+      }
+    });
+    getData("lang").then((data) => {
+      if (data) {
+        i18n.changeLanguage(data);
       }
     });
   }, []);
-  const getData = async () => {
+  const getData = async (key) => {
     try {
-      const value = await AsyncStorage.getItem('theme');
+      const value = await AsyncStorage.getItem(key);
       return value !== null ? value : null;
     } catch (e) {
       console.log(e);
@@ -39,7 +44,7 @@ export default function Navigation() {
   return (
     <NavigationContainer
       theme={
-        state.theme === 'dark'
+        state.theme === "dark"
           ? {
               ...DarkTheme,
               colors: {
@@ -52,8 +57,8 @@ export default function Navigation() {
       {
         /* Rest of your app code */
         <Tab.Navigator
-          screenOptions={({route}) => ({
-            tabBarIcon: ({color, size}) => {
+          screenOptions={({ route }) => ({
+            tabBarIcon: ({ color, size }) => {
               let iconName;
               return <Icon name={iconName} size={size} color={color} />;
             },
@@ -64,10 +69,10 @@ export default function Navigation() {
             options={{
               headerShown: false,
 
-              tabBarIcon: ({color, size}) => (
-                <Icon name={'home'} size={size} color={color} />
+              tabBarIcon: ({ color, size }) => (
+                <Icon name={"home"} size={size} color={color} />
               ),
-              title: t('Home'),
+              title: t("Home"),
             }}
           />
 
@@ -76,10 +81,10 @@ export default function Navigation() {
             component={SearchStack}
             options={{
               headerShown: false,
-              tabBarIcon: ({color, size}) => (
-                <Icon name={'magnify'} size={size} color={color} />
+              tabBarIcon: ({ color, size }) => (
+                <Icon name={"magnify"} size={size} color={color} />
               ),
-              title: t('Search'),
+              title: t("Search"),
             }}
           />
           <Tab.Screen
@@ -87,10 +92,10 @@ export default function Navigation() {
             component={BookmarkStack}
             options={{
               headerShown: false,
-              tabBarIcon: ({color, size}) => (
-                <Icon name={'bookmark'} size={size} color={color} />
+              tabBarIcon: ({ color, size }) => (
+                <Icon name={"bookmark"} size={size} color={color} />
               ),
-              title: t('Bookmarks'),
+              title: t("Bookmarks"),
             }}
           />
           <Tab.Screen
@@ -98,10 +103,10 @@ export default function Navigation() {
             component={SettingsScreen}
             options={{
               headerShown: false,
-              tabBarIcon: ({color, size}) => (
-                <Icon name={'cog'} size={size} color={color} />
+              tabBarIcon: ({ color, size }) => (
+                <Icon name={"cog"} size={size} color={color} />
               ),
-              title: t('Settings'),
+              title: t("Settings"),
             }}
           />
         </Tab.Navigator>

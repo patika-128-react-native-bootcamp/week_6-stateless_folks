@@ -9,6 +9,7 @@ import {
 import { useRoute, useTheme } from "@react-navigation/native";
 import { ScrollView } from "react-native-gesture-handler";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useTranslation } from "react-i18next";
 
 import styles from "./DetailScreen.style";
 import { ThemeContext } from "../../context/ThemeContext/ThemeProvider";
@@ -39,6 +40,7 @@ export default function DetailScreen() {
     visible: false,
     message: "",
   });
+  const { t } = useTranslation();
 
   const { item, type } = route.params;
 
@@ -55,22 +57,20 @@ export default function DetailScreen() {
         },
       });
       // await AsyncStorage.setItem(type, item);
-      // alert("Added to Bookmark");
       setToast({
         visible: true,
-        message: "Added to Bookmark ⭐",
+        message: t("Bookmark Add"),
       });
       return;
     }
     setToast({
       visible: true,
-      message: "Already in Bookmark ⭐",
+      message: t("Bookmark Already"),
     });
     return;
   };
 
   const bottomSheetRef = useRef(null);
-  // variables
   const snapPoints = useMemo(() => ["65%", "80%"], []);
 
   const defaultDesc =
