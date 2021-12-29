@@ -10,12 +10,14 @@ import { useTheme } from "@react-navigation/native";
 import SettingsCard from "../../components/Cards/SettingsCard/SettingsCard";
 import { ThemeContext } from "../../context/ThemeContext/ThemeProvider";
 import theme from "../../styles/theme/theme";
+import { useTranslation } from "react-i18next";
 
 export default function SetingsScreen() {
   const { dispatch } = useContext(ThemeContext);
   const { colors } = useTheme();
   const [isDark, setIsDark] = React.useState(false);
   const [lang, setLang] = React.useState(true);
+  const { t } = useTranslation();
 
   const getTheme = async () => {
     const theme = await AsyncStorage.getItem("theme");
@@ -68,7 +70,7 @@ export default function SetingsScreen() {
         titleStyle={{
           color: colors.text,
         }}
-        title="Change Theme">
+        title={t("Change Theme")}>
         <Icon
           name={isDark ? "weather-night" : "brightness-6"}
           size={30}
@@ -84,7 +86,7 @@ export default function SetingsScreen() {
         titleStyle={{
           color: colors.text,
         }}
-        title="Change Language">
+        title={t("Change Language")}>
         <Text style={[styles.language, { color: colors.text }]}>
           {i18n.language.toUpperCase()}
         </Text>

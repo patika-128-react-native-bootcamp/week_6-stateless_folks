@@ -17,6 +17,7 @@ import ComicsLayout from "../../components/layouts/ComicsLayout/ComicsLayout";
 import CharactersLayout from "../../components/layouts/CharactersLayout/CharactersLayout";
 import theme from "../../styles/theme/theme";
 import IconButton from "../../components/Buttons/IconButton";
+import { ADD_TO_BOOKMARK } from "../../context/ThemeContext/types";
 
 export default function DetailScreen() {
   const { colors } = useTheme();
@@ -31,7 +32,7 @@ export default function DetailScreen() {
     );
     if (!isDuplicate) {
       dispatch({
-        type: "ADD_TO_BOOKMARK",
+        type: ADD_TO_BOOKMARK,
         payload: {
           type,
           item,
@@ -58,9 +59,7 @@ export default function DetailScreen() {
           uri: `${item.thumbnail.path}/detail.${item.thumbnail.extension}`,
         }}>
         <IconButton
-          containerStyle={{
-            padding: 10,
-          }}
+          containerStyle={styles.favorite}
           icon="bookmark"
           onPress={() => addToBookmark()}
           size={30}
@@ -69,15 +68,9 @@ export default function DetailScreen() {
       <BottomSheet
         backgroundStyle={{
           backgroundColor: colors.background,
-          borderRadius: 50,
-          overflow: "hidden",
+          ...styles.bottomSheetBackground,
         }}
-        handleIndicatorStyle={{
-          backgroundColor: theme.MAIN_GRAY,
-          width: 120,
-          height: 10,
-          borderRadius: 50,
-        }}
+        handleIndicatorStyle={styles.indicator}
         ref={bottomSheetRef}
         index={1}
         snapPoints={snapPoints}>
