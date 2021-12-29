@@ -1,6 +1,7 @@
 import React from "react";
 import { SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
 
+import Search from "../../components/Search";
 import CharactersLayout from "../../components/layouts/CharactersLayout";
 import ComicsLayout from "../../components/layouts/ComicsLayout";
 import SliderLayout from "../../components/layouts/SliderLayout";

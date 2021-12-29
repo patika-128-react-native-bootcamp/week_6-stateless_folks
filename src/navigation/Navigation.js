@@ -1,5 +1,4 @@
 import React, { useContext, useEffect } from "react";
-import { Text, useColorScheme } from "react-native";
 import {
   NavigationContainer,
   DefaultTheme,
@@ -18,22 +17,14 @@ import theme from "../styles/theme/theme";
 
 export default function Navigation() {
   const Tab = createBottomTabNavigator();
-  const scheme = useColorScheme();
   const { state, dispatch } = useContext(ThemeContext);
-  // const MyTheme = {
-  //   ...DefaultTheme,
-  //   colors: {...DefaultTheme.colors, text: 'yellow'},
-  // };
+
   useEffect(() => {
     getData().then((data) => {
       if (data) {
         dispatch({ type: data });
       }
     });
-    // console.log(persistentVal);
-    // if (persistentVal) {
-    //   dispatch({type: getData()});
-    // }
   }, []);
   const getData = async () => {
     try {
