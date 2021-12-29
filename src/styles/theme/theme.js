@@ -2,7 +2,7 @@ export default {
   BG_COLOR: { dark: "#0A0A0A;", light: "#dce0dd" },
   MAIN_RED: "#EC1D24",
   MAIN_WHITE: "#FFFFFF",
-  MAIN_BLACK: "#000000",
+  MAIN_BLACK: "#0a0a0a",
   MAIN_GRAY: "#929292",
   MAIN_LIGHT_GRAY: "#ebebeb",
   MAIN_DARK_GRAY: "#6e6e6e",
