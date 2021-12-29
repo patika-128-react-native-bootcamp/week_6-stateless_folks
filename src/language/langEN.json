@@ -1,5 +1,17 @@
 {
-    "Change Theme": "Change Theme",
-    "Change Language": "Change Language",
-    "a": "en"
-  }
+  "Change Theme": "Change Theme",
+  "Change Language": "Change Language",
+  "Home": "Home",
+  "Search": "Search",
+  "Find": "Find Your Hero",
+  "Bookmarks": "Bookmarks",
+  "Settings": "Settings",
+  "Characters": "Characters",
+  "Comics": "Comics",
+  "Learn More": "Learn More",
+  "No Result": "No Results Found",
+  "No Characters": "No Characters",
+  "No Comics": "No Comics",
+  "Dark": "Dark",
+  "Light": "Light"
+}
