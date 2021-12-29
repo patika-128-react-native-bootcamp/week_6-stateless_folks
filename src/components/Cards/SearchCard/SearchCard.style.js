@@ -12,8 +12,8 @@ const styles = StyleSheet.create({
   thumbnail: {
     borderTopLeftRadius: 10,
     borderBottomLeftRadius: 10,
-    width: 110,
-    height: 110,
+    width: 120,
+    height: 120,
     marginRight: 10,
   },
   textContainer: {
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   title: {
-    fontSize: 30,
+    fontSize: 25,
     fontWeight: "bold",
     marginBottom: 5,
     color: "#fff",
