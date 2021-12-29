@@ -64,7 +64,7 @@ export default function SetingsScreen() {
             color: colors.text,
           },
         ]}>
-        Settings
+        {t("Settings")}
       </Text>
       <SettingsCard
         titleStyle={{

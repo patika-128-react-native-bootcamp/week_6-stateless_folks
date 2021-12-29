@@ -1,11 +1,10 @@
-import React, { useContext, useMemo, useRef } from "react";
-import { View, Text } from "react-native";
+import React, { useContext, useMemo, useRef, useState } from "react";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 import {
   ImageBackground,
   SafeAreaView,
-  StyleSheet,
-  Dimensions,
+  Text,
+  ToastAndroid,
 } from "react-native";
 import { useRoute, useTheme } from "@react-navigation/native";
 import { ScrollView } from "react-native-gesture-handler";
@@ -15,14 +14,31 @@ import styles from "./DetailScreen.style";
 import { ThemeContext } from "../../context/ThemeContext/ThemeProvider";
 import ComicsLayout from "../../components/layouts/ComicsLayout/ComicsLayout";
 import CharactersLayout from "../../components/layouts/CharactersLayout/CharactersLayout";
-import theme from "../../styles/theme/theme";
 import IconButton from "../../components/Buttons/IconButton";
 import { ADD_TO_BOOKMARK } from "../../context/ThemeContext/types";
+
+const Toast = ({ visible, message }) => {
+  if (visible) {
+    ToastAndroid.showWithGravityAndOffset(
+      message,
+      ToastAndroid.SHORT,
+      ToastAndroid.BOTTOM,
+      25,
+      50
+    );
+    return null;
+  }
+  return null;
+};
 
 export default function DetailScreen() {
   const { colors } = useTheme();
   const route = useRoute();
   const { state, dispatch } = useContext(ThemeContext);
+  const [toast, setToast] = useState({
+    visible: false,
+    message: "",
+  });
 
   const { item, type } = route.params;
 
@@ -39,8 +55,17 @@ export default function DetailScreen() {
         },
       });
       // await AsyncStorage.setItem(type, item);
-      alert("Added to Bookmark");
+      // alert("Added to Bookmark");
+      setToast({
+        visible: true,
+        message: "Added to Bookmark ⭐",
+      });
+      return;
     }
+    setToast({
+      visible: true,
+      message: "Already in Bookmark ⭐",
+    });
     return;
   };
 
@@ -53,13 +78,15 @@ export default function DetailScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
+      <Toast visible={toast.visible} message={toast.message} />
       <ImageBackground
         style={styles.image}
         source={{
           uri: `${item.thumbnail.path}/detail.${item.thumbnail.extension}`,
         }}>
         <IconButton
-          containerStyle={styles.favorite}
+          containerStyle={styles.favoriteContainer}
+          iconStyle={styles.favoriteIcon}
           icon="bookmark"
           onPress={() => addToBookmark()}
           size={30}

@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
     zIndex: 0,
   },
   image: {
+    paddingTop: 20,
     flex: 1,
     justifyContent: "flex-start",
     alignItems: "flex-end",
@@ -30,7 +31,10 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 15,
   },
-  favorite: {
+  favoriteContainer: {
+    padding: 10,
+  },
+  favoriteIcon: {
     padding: 10,
   },
   indicator: {

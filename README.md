@@ -18,7 +18,7 @@
 
 <div style="display:flex;flex-direction:row" >
 <div style="width:100px;margin:0 10px;" >
-<a href="https://github.com/salik-a">
+<a href="https://github.com/hcbylmz">
 <div>
 <img src="https://avatars.githubusercontent.com/u/45284106?v=4" width="100px;" style="border-radius:50px" alt="Hicabi Yılmaz"/><p><center><b>Hicabi Yılmaz
 </b></center></p>
