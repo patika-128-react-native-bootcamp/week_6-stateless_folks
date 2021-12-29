@@ -11,21 +11,21 @@ export default function reducer(state, action) {
       return { ...state, theme: "light" };
 
     case ADD_TO_BOOKMARK:
-      const isDuplicate = state.bookmarks[action.payload.type].find(
-        (item) => item.id === action.payload.item.id
-      );
-      if (!isDuplicate) {
-        return {
-          ...state,
-          bookmarks: {
-            ...state.bookmarks,
-            [action.payload.type]: [
-              ...state.bookmarks[action.payload.type],
-              action.payload.item,
-            ],
-          },
-        };
-      }
+      // const isDuplicate = state.bookmarks[action.payload.type].find(
+      //   (item) => item.id === action.payload.item.id
+      // );
+      // if (!isDuplicate) {
+      return {
+        ...state,
+        bookmarks: {
+          ...state.bookmarks,
+          [action.payload.type]: [
+            ...state.bookmarks[action.payload.type],
+            action.payload.item,
+          ],
+        },
+      };
+    // }
     default:
       return state;
   }

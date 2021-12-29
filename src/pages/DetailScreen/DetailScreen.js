@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { useRoute, useTheme } from "@react-navigation/native";
 import { ScrollView } from "react-native-gesture-handler";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { ThemeContext } from "../../context/ThemeContext/ThemeProvider";
 import ComicsLayout from "../../components/layouts/ComicsLayout/ComicsLayout";
@@ -23,18 +24,23 @@ export default function DetailScreen() {
 
   const { item, type } = route.params;
 
-  const addToBookmark = () => {
-    dispatch({
-      type: "ADD_TO_BOOKMARK",
-      payload: {
-        type,
-        item,
-      },
-    });
-    alert("Added to Bookmark");
+  const addToBookmark = async () => {
+    const isDuplicate = state.bookmarks[type].find(
+      (bookmark) => bookmark.id === item.id
+    );
+    if (!isDuplicate) {
+      dispatch({
+        type: "ADD_TO_BOOKMARK",
+        payload: {
+          type,
+          item,
+        },
+      });
+      // await AsyncStorage.setItem(type, item);
+      alert("Added to Bookmark");
+    }
+    return;
   };
-
-  console.log(state);
 
   const bottomSheetRef = useRef(null);
   // variables
@@ -111,34 +117,3 @@ export default function DetailScreen() {
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    position: "relative",
-    zIndex: 0,
-  },
-  image: {
-    flex: 1,
-    justifyContent: "flex-start",
-    alignItems: "flex-end",
-    width: "100%",
-    height: Dimensions.get("window").height / 2,
-  },
-  contentContainer: {
-    flex: 1,
-    alignItems: "center",
-    padding: 20,
-    overflow: "hidden",
-    paddingBottom: 20,
-  },
-  title: {
-    textAlign: "center",
-    fontSize: 25,
-    fontWeight: "bold",
-    marginBottom: 10,
-  },
-  description: {
-    fontSize: 15,
-  },
-});
