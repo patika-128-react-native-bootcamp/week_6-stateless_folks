@@ -8,7 +8,7 @@ export default function HomeStack() {
 
   return (
     <Stack.Navigator>
-      <Stack.Screen name={routes.HOME_SCREEN} component={BookmarkScreen} />
+      <Stack.Screen name={routes.BOOKMARK_SCREEN} component={BookmarkScreen} />
       <Stack.Screen name={routes.DETAIL_SCREEN} component={DetailScreen} />
     </Stack.Navigator>
   );
