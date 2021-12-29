@@ -8,12 +8,13 @@ export default function IconButton({
   icon,
   onPress = null,
   iconStyle = {},
+  containerStyle = {},
   size = 24,
   color = "#fff",
 }) {
   return (
     <TouchableOpacity onPress={onPress}>
-      <View style={styles.container}>
+      <View style={[styles.container, containerStyle]}>
         <Icon
           name={icon}
           style={[styles.icon, iconStyle]}

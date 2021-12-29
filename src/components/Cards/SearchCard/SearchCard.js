@@ -3,14 +3,14 @@ import React from "react";
 import { View, Text, Image } from "react-native";
 import styles from "./SearchCard.style";
 
-export default function SearchCard({ searchData }) {
+export default function SearchCard({ searchData, containerStyle }) {
   const { colors } = useTheme();
 
   const lorem =
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.";
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, containerStyle]}>
       <Image
         style={styles.thumbnail}
         source={{
@@ -19,6 +19,8 @@ export default function SearchCard({ searchData }) {
       />
       <View style={styles.textContainer}>
         <Text
+          numberOfLines={2}
+          ellipsizeMode="tail"
           style={[
             styles.title,
             {

@@ -1,12 +1,13 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { View, Text, Button, Switch } from "react-native";
 import { useTheme } from "@react-navigation/native";
-import { ThemeContext } from "../../context/ThemeContext/ThemeProvider";
-import styles from "./SettingsComponent.styles";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import "../../language/i18n";
 import { useTranslation } from "react-i18next";
+
+import { ThemeContext } from "../../context/ThemeContext/ThemeProvider";
+import styles from "./SettingsComponent.styles";
+import { DARK, LIGHT } from "../../context/ThemeContext/types";
 
 export default function SettingsComponent() {
   const { dispatch } = useContext(ThemeContext);
@@ -14,11 +15,11 @@ export default function SettingsComponent() {
   const { t, i18n } = useTranslation();
   async function darkTheme() {
     await AsyncStorage.setItem("theme", "dark");
-    dispatch({ type: "dark" });
+    dispatch({ type: DARK });
   }
   async function lightTheme() {
     await AsyncStorage.setItem("theme", "light");
-    dispatch({ type: "light" });
+    dispatch({ type: LIGHT });
   }
 
   function changeLanguage() {

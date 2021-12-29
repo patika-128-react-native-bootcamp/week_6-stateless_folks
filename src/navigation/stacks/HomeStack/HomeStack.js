@@ -22,15 +22,15 @@ export default function HomeStack() {
       <Stack.Screen
         name={routes.DETAIL_SCREEN}
         component={DetailScreen}
-        options={{
-          headerRight: () => (
-            <IconButton
-              icon="bookmark"
-              onPress={() => alert("Bookmark")}
-              size={30}
-            />
-          ),
-        }}
+        // options={{
+        //   headerRight: () => (
+        //     <IconButton
+        //       icon="bookmark"
+        //       onPress={() => alert("Bookmark")}
+        //       size={30}
+        //     />
+        //   ),
+        // }}
       />
     </Stack.Navigator>
   );

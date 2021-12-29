@@ -87,7 +87,7 @@ export default function Navigation() {
               tabBarIcon: ({ color, size }) => (
                 <Icon name={"bookmark"} size={size} color={color} />
               ),
-              title: "Bookmark",
+              title: "Bookmarks",
             }}
           />
           <Tab.Screen
