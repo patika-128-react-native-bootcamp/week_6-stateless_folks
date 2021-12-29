@@ -1,25 +1,26 @@
-import { useNavigation } from "@react-navigation/native";
-import React from "react";
+import {useNavigation} from '@react-navigation/native';
+import React from 'react';
 import {
   View,
   ActivityIndicator,
   StyleSheet,
   TouchableOpacity,
-} from "react-native";
-import { FlatList } from "react-native-gesture-handler";
+} from 'react-native';
+import {FlatList} from 'react-native-gesture-handler';
 
-import Header from "../../../components/Header";
-import useMarvelData from "../../../hooks/ApiHelperHook";
-import theme from "../../../styles/theme/theme";
-import ComicCard from "../../Cards/ComicCard";
-import routes from "../../../navigation/routes";
-import StatusIndicator from "../../StatusIndicator";
+import Header from '../../../components/Header';
+import useMarvelData from '../../../hooks/ApiHelperHook';
+import theme from '../../../styles/theme/theme';
+import ComicCard from '../../Cards/ComicCard';
+import routes from '../../../navigation/routes';
+import StatusIndicator from '../../StatusIndicator';
+import {useTranslation} from 'react-i18next';
 
-export default function ComicsLayout({ endpoint }) {
-  const { data: comics, error, isLoading } = useMarvelData(endpoint);
+export default function ComicsLayout({endpoint}) {
+  const {data: comics, error, isLoading} = useMarvelData(endpoint);
   const navigation = useNavigation();
 
-  function renderItem({ item }) {
+  function renderItem({item}) {
     return (
       item.thumbnail &&
       item.textObjects[0] && (
@@ -32,8 +33,8 @@ export default function ComicsLayout({ endpoint }) {
             comicDetail={item.textObjects[0].text}
             imageUrl={
               item.thumbnail.path +
-              "/standard_fantastic" +
-              "." +
+              '/standard_fantastic' +
+              '.' +
               item.thumbnail.extension
             }
           />
@@ -46,12 +47,13 @@ export default function ComicsLayout({ endpoint }) {
   function handleNavigation(item) {
     navigation.navigate(routes.DETAIL_SCREEN, {
       item,
-      type: "comics",
+      type: 'comics',
     });
   }
+  const {t, i18n} = useTranslation();
   return (
     <View style={styles.container}>
-      <Header title="Comics" icon="chevron-right" />
+      <Header title={t('Comics')} icon="chevron-right" />
       {isLoading ? (
         <ActivityIndicator size="large" color={theme.MAIN_RED} />
       ) : (
@@ -78,6 +80,6 @@ export default function ComicsLayout({ endpoint }) {
 const styles = StyleSheet.create({
   container: {
     marginBottom: 20,
-    width: "100%",
+    width: '100%',
   },
 });
