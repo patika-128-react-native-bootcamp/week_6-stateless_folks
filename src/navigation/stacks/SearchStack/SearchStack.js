@@ -9,7 +9,11 @@ export default function SearchStack() {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerShown: false,
+        headerShown: true,
+        headerTransparent: true,
+        headerTintColor: "#fff",
+        headerShadowVisible: false,
+        headerTitle: "",
       }}>
       <Stack.Screen name={routes.SEARCH_SCREEN} component={SearchScreen} />
       <Stack.Screen name={routes.DETAIL_SCREEN} component={DetailScreen} />

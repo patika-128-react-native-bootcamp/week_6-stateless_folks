@@ -1,5 +1,5 @@
 import React from "react";
-import { View, TouchableHighlight, StyleSheet } from "react-native";
+import { View, TouchableOpacity, StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 import theme from "../../../styles/theme/theme";
@@ -12,7 +12,7 @@ export default function IconButton({
   color = "#fff",
 }) {
   return (
-    <TouchableHighlight onPress={onPress}>
+    <TouchableOpacity onPress={onPress}>
       <View style={styles.container}>
         <Icon
           name={icon}
@@ -21,7 +21,7 @@ export default function IconButton({
           color={color}
         />
       </View>
-    </TouchableHighlight>
+    </TouchableOpacity>
   );
 }
 
@@ -32,6 +32,8 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
   },
   icon: {
+    padding: 5,
+
     borderRadius: 25,
     backgroundColor: theme.MAIN_RED,
   },

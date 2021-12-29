@@ -9,7 +9,11 @@ export default function BookmarkStack() {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerShown: false,
+        headerShown: true,
+        headerTransparent: true,
+        headerTintColor: "#fff",
+        headerShadowVisible: false,
+        headerTitle: "",
       }}>
       <Stack.Screen name={routes.BOOKMARK_SCREEN} component={BookmarkScreen} />
       <Stack.Screen name={routes.DETAIL_SCREEN} component={DetailScreen} />

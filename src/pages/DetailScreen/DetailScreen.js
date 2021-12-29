@@ -7,6 +7,7 @@ import { useRoute, useTheme } from "@react-navigation/native";
 import ComicsLayout from "../../components/layouts/ComicsLayout/ComicsLayout";
 import CharactersLayout from "../../components/layouts/CharactersLayout/CharactersLayout";
 import theme from "../../styles/theme/theme";
+import { ScrollView } from "react-native-gesture-handler";
 
 export default function DetailScreen() {
   const { colors } = useTheme();
@@ -44,37 +45,39 @@ export default function DetailScreen() {
         ref={bottomSheetRef}
         index={1}
         snapPoints={snapPoints}>
-        <BottomSheetView
-          style={[
-            styles.contentContainer,
-            {
-              backgroundColor: colors.background,
-            },
-          ]}>
-          <Text
+        <ScrollView>
+          <BottomSheetView
             style={[
-              styles.title,
+              styles.contentContainer,
               {
-                color: colors.text,
+                backgroundColor: colors.background,
               },
             ]}>
-            {item.name || item.title}
-          </Text>
-          <Text
-            style={[
-              styles.description,
-              {
-                color: colors.text,
-              },
-            ]}>
-            {item.description || defaultDesc}
-          </Text>
-          {type === "characters" ? (
-            <ComicsLayout endpoint={`${type}/${item.id}/comics`} />
-          ) : (
-            <CharactersLayout endpoint={`${type}/${item.id}/characters`} />
-          )}
-        </BottomSheetView>
+            <Text
+              style={[
+                styles.title,
+                {
+                  color: colors.text,
+                },
+              ]}>
+              {item.name || item.title}
+            </Text>
+            <Text
+              style={[
+                styles.description,
+                {
+                  color: colors.text,
+                },
+              ]}>
+              {item.description || defaultDesc}
+            </Text>
+            {type === "characters" ? (
+              <ComicsLayout endpoint={`${type}/${item.id}/comics`} />
+            ) : (
+              <CharactersLayout endpoint={`${type}/${item.id}/characters`} />
+            )}
+          </BottomSheetView>
+        </ScrollView>
       </BottomSheet>
     </SafeAreaView>
   );
@@ -92,6 +95,8 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     padding: 20,
+    overflow: "hidden",
+    paddingBottom: 20,
   },
   title: {
     textAlign: "center",
