@@ -1,26 +1,27 @@
-import React from 'react';
+import React from "react";
 import {
   ActivityIndicator,
-  FlatList,
   View,
   StyleSheet,
   TouchableOpacity,
-} from 'react-native';
+} from "react-native";
+import { FlatList } from "react-native-gesture-handler";
 
-import Header from '../../Header/Header';
-import useMarvelData from '../../../hooks/ApiHelperHook';
-import CharacterCard from '../../Cards/CharacterCard';
-import theme from '../../../styles/theme/theme';
-import {useNavigation} from '@react-navigation/native';
-import routes from '../../../navigation/routes';
+import Header from "../../Header/Header";
+import useMarvelData from "../../../hooks/ApiHelperHook";
+import CharacterCard from "../../Cards/CharacterCard";
+import theme from "../../../styles/theme/theme";
+import { useNavigation } from "@react-navigation/native";
+import routes from "../../../navigation/routes";
+import StatusIndicator from "../../StatusIndicator";
 
-export default function CharactersLayout() {
-  const {data: characters, error, isLoading} = useMarvelData('characters');
+export default function CharactersLayout({ endpoint }) {
+  const { data: characters, error, isLoading } = useMarvelData(endpoint);
   const navigation = useNavigation();
   function handleNavigation(item) {
-    navigation.navigate(routes.DETAIL_SCREEN, {item});
+    navigation.navigate(routes.DETAIL_SCREEN, { item, type: "characters" });
   }
-  function renderItem({item}) {
+  function renderItem({ item }) {
     return (
       item.thumbnail && (
         <TouchableOpacity
@@ -28,12 +29,12 @@ export default function CharactersLayout() {
             handleNavigation(item);
           }}>
           <CharacterCard
-            title={item.name || 'Marvel Hero'}
+            title={item.name || "Marvel Hero"}
             image={{
               uri:
                 item.thumbnail.path +
-                '/standard_fantastic' +
-                '.' +
+                "/standard_fantastic" +
+                "." +
                 item.thumbnail.extension,
             }}
           />
@@ -53,6 +54,14 @@ export default function CharactersLayout() {
           renderItem={renderItem}
           horizontal
           showsHorizontalScrollIndicator={false}
+          ListEmptyComponent={
+            <StatusIndicator
+              iconSize={75}
+              icon="delete-empty"
+              message="No results shown"
+              color={theme.MAIN_GRAY}
+            />
+          }
         />
       )}
     </View>
@@ -60,5 +69,7 @@ export default function CharactersLayout() {
 }
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    width: "100%",
+  },
 });

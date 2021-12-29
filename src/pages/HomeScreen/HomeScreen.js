@@ -11,8 +11,8 @@ export default function HomeScreen() {
       <ScrollView>
         <SliderLayout />
         <View style={styles.innerContainer}>
-          <CharactersLayout />
-          <ComicsLayout />
+          <CharactersLayout endpoint="characters" />
+          <ComicsLayout endpoint="comics" />
         </View>
       </ScrollView>
     </SafeAreaView>

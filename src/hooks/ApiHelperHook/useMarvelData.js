@@ -1,8 +1,8 @@
-import {useEffect, useState} from 'react';
-import axios from 'axios';
-import Config from 'react-native-config';
+import { useEffect, useState } from "react";
+import axios from "axios";
+import Config from "react-native-config";
 
-function useMarvelData(parameter, characterFinder) {
+function useMarvelData(parameter, apiType) {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -20,9 +20,7 @@ function useMarvelData(parameter, characterFinder) {
         const fetchData = `${url}/${parameter}?ts=${ts}&apikey=${publicKey}&hash=${hash}`;
         const fetchCharacter = `${url}/${parameter}&ts=${ts}&apikey=${publicKey}&hash=${hash}`;
         console.log(fetchCharacter);
-        const response = await axios.get(
-          characterFinder ? fetchCharacter : fetchData,
-        );
+        const response = await axios.get(apiType ? fetchCharacter : fetchData);
         //const res = await response.json();
         setError(null);
         setData(response.data);
@@ -37,7 +35,7 @@ function useMarvelData(parameter, characterFinder) {
     fetchMarvel();
   }, [parameter]);
 
-  return {data, error, isLoading};
+  return { data, error, isLoading };
 }
 
 export default useMarvelData;

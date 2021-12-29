@@ -1,23 +1,25 @@
-import {useNavigation} from '@react-navigation/native';
-import React from 'react';
+import { useNavigation } from "@react-navigation/native";
+import React from "react";
 import {
   View,
-  Text,
-  FlatList,
   ActivityIndicator,
   StyleSheet,
   TouchableOpacity,
-} from 'react-native';
+} from "react-native";
+import { FlatList } from "react-native-gesture-handler";
 
-import Header from '../../../components/Header';
-import useMarvelData from '../../../hooks/ApiHelperHook';
-import theme from '../../../styles/theme/theme';
-import ComicCard from '../../Cards/ComicCard';
-import routes from '../../../navigation/routes';
+import Header from "../../../components/Header";
+import useMarvelData from "../../../hooks/ApiHelperHook";
+import theme from "../../../styles/theme/theme";
+import ComicCard from "../../Cards/ComicCard";
+import routes from "../../../navigation/routes";
+import StatusIndicator from "../../StatusIndicator";
 
-export default function ComicsLayout() {
-  const {data: comics, error, isLoading} = useMarvelData('comics');
-  function renderItem({item}) {
+export default function ComicsLayout({ endpoint }) {
+  const { data: comics, error, isLoading } = useMarvelData(endpoint);
+  const navigation = useNavigation();
+
+  function renderItem({ item }) {
     return (
       item.thumbnail &&
       item.textObjects[0] && (
@@ -30,8 +32,8 @@ export default function ComicsLayout() {
             comicDetail={item.textObjects[0].text}
             imageUrl={
               item.thumbnail.path +
-              '/standard_fantastic' +
-              '.' +
+              "/standard_fantastic" +
+              "." +
               item.thumbnail.extension
             }
           />
@@ -41,9 +43,11 @@ export default function ComicsLayout() {
   }
 
   const extractId = (item, i) => `${item.id}__${i}`;
-  const navigation = useNavigation();
   function handleNavigation(item) {
-    navigation.navigate(routes.DETAIL_SCREEN, {item});
+    navigation.navigate(routes.DETAIL_SCREEN, {
+      item,
+      type: "comics",
+    });
   }
   return (
     <View style={styles.container}>
@@ -57,6 +61,14 @@ export default function ComicsLayout() {
           renderItem={renderItem}
           horizontal
           showsHorizontalScrollIndicator={false}
+          ListEmptyComponent={
+            <StatusIndicator
+              size={75}
+              icon="delete-empty"
+              message="No results shown"
+              color={theme.MAIN_GRAY}
+            />
+          }
         />
       )}
     </View>
@@ -66,5 +78,6 @@ export default function ComicsLayout() {
 const styles = StyleSheet.create({
   container: {
     marginBottom: 20,
+    width: "100%",
   },
 });
