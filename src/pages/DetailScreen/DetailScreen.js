@@ -11,6 +11,7 @@ import { useRoute, useTheme } from "@react-navigation/native";
 import { ScrollView } from "react-native-gesture-handler";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+import styles from "./DetailScreen.style";
 import { ThemeContext } from "../../context/ThemeContext/ThemeProvider";
 import ComicsLayout from "../../components/layouts/ComicsLayout/ComicsLayout";
 import CharactersLayout from "../../components/layouts/CharactersLayout/CharactersLayout";
@@ -61,7 +62,7 @@ export default function DetailScreen() {
             padding: 10,
           }}
           icon="bookmark"
-          onPress={addToBookmark}
+          onPress={() => addToBookmark()}
           size={30}
         />
       </ImageBackground>
