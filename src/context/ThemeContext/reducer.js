@@ -1,4 +1,4 @@
-import { DARK, LIGHT, ADD_TO_BOOKMARK } from "./types";
+import { DARK, LIGHT, ADD_TO_BOOKMARK, SET_BOOKMARKS } from "./types";
 
 export default function reducer(state, action) {
   switch (action.type) {
@@ -20,6 +20,12 @@ export default function reducer(state, action) {
             action.payload.item,
           ],
         },
+      };
+
+    case SET_BOOKMARKS:
+      return {
+        ...state,
+        bookmarks: action.payload,
       };
     default:
       return state;
