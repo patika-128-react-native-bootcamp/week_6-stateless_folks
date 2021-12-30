@@ -4,17 +4,19 @@ import {
   DefaultTheme,
   DarkTheme,
 } from "@react-navigation/native";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { useTranslation } from "react-i18next";
+
 import HomeStack from "./stacks/HomeStack";
 import SettingsScreen from "../pages/SettingsScreen";
 import routes from "./routes";
 import { ThemeContext } from "../context/ThemeContext/ThemeProvider";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import BookmarkStack from "./stacks/BookmarkStack/BookmarkStack";
 import SearchStack from "./stacks/SearchStack/SearchStack";
 import theme from "../styles/theme/theme";
-import { useTranslation } from "react-i18next";
+import { SET_BOOKMARKS } from "../context/ThemeContext/types";
 
 export default function Navigation() {
   const Tab = createBottomTabNavigator();
@@ -32,13 +34,21 @@ export default function Navigation() {
         i18n.changeLanguage(data);
       }
     });
+    getData("bookmarks").then((data) => {
+      if (data) {
+        dispatch({
+          type: SET_BOOKMARKS,
+          payload: JSON.parse(data),
+        });
+      }
+    });
   }, []);
   const getData = async (key) => {
     try {
       const value = await AsyncStorage.getItem(key);
       return value !== null ? value : null;
     } catch (e) {
-      console.log(e);
+      alert(e.message);
     }
   };
   return (

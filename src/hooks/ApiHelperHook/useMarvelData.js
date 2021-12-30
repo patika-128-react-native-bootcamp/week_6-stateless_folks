@@ -1,6 +1,6 @@
-import {useEffect, useState} from 'react';
-import axios from 'axios';
-import Config from 'react-native-config';
+import { useEffect, useState } from "react";
+import axios from "axios";
+import Config from "react-native-config";
 
 function useMarvelData(parameter, apiType) {
   const [data, setData] = useState([]);
@@ -8,7 +8,7 @@ function useMarvelData(parameter, apiType) {
   const [isLoading, setIsLoading] = useState(true);
   const publicKey = Config.PUBLIC_KEY;
   const hash = Config.HASH;
-  const ts = Config.T; // timestamp default maybe change later
+  const ts = Config.T;
   const url = Config.URL;
 
   useEffect(() => {
@@ -18,7 +18,7 @@ function useMarvelData(parameter, apiType) {
         const fetchData = `${url}/${parameter}?ts=${ts}&apikey=${publicKey}&hash=${hash}`;
         const fetchCharacter = `${url}/${parameter}&ts=${ts}&apikey=${publicKey}&hash=${hash}`;
         const response = await axios.get(
-          apiType === 'character' ? fetchCharacter : fetchData,
+          apiType === "character" ? fetchCharacter : fetchData
         );
         setError(null);
         setData(response.data);
@@ -33,7 +33,7 @@ function useMarvelData(parameter, apiType) {
     fetchMarvel();
   }, [parameter]);
 
-  return {data, error, isLoading};
+  return { data, error, isLoading };
 }
 
 export default useMarvelData;

@@ -56,7 +56,15 @@ export default function DetailScreen() {
           item,
         },
       });
-      // await AsyncStorage.setItem(type, item);
+      // save it to async storage
+      await AsyncStorage.setItem(
+        "bookmarks",
+        JSON.stringify({
+          ...state.bookmarks,
+          [type]: [...state.bookmarks[type], item],
+        })
+      );
+
       setToast({
         visible: true,
         message: t("Bookmark Add"),

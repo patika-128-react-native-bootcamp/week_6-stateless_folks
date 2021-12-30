@@ -19,19 +19,7 @@ export default function HomeStack() {
         headerTitle: "",
       }}>
       <Stack.Screen name={routes.HOME_SCREEN} component={HomeScreen} />
-      <Stack.Screen
-        name={routes.DETAIL_SCREEN}
-        component={DetailScreen}
-        // options={{
-        //   headerRight: () => (
-        //     <IconButton
-        //       icon="bookmark"
-        //       onPress={() => alert("Bookmark")}
-        //       size={30}
-        //     />
-        //   ),
-        // }}
-      />
+      <Stack.Screen name={routes.DETAIL_SCREEN} component={DetailScreen} />
     </Stack.Navigator>
   );
 }
