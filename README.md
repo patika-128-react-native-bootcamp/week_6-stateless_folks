@@ -14,6 +14,16 @@
 
 - for **macOS** users use `pod install` in your ios directory
 
+## Used Packages:
+
+- `@gorhom/bottom-sheet` for Bottom Sheet components
+- `@react-native-async-storage/async-storage` to keep track of async-storage
+- `@react-navigation` for page hierarchy
+- `axios` to fetch data from API
+- `i18next` and `react-i18next` for language support
+- `react-native-gradients` to create linear gradients
+- `react-native-vector-icons` for using vector icons
+
 # Contributors
 
 <div style="display:flex;flex-direction:row" >
