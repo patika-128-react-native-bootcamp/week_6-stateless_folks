@@ -67,12 +67,9 @@ export default function Navigation() {
       {
         /* Rest of your app code */
         <Tab.Navigator
-          screenOptions={({ route }) => ({
-            tabBarIcon: ({ color, size }) => {
-              let iconName;
-              return <Icon name={iconName} size={size} color={color} />;
-            },
-          })}>
+          screenOptions={{
+            tabBarActiveTintColor: theme.MAIN_RED,
+          }}>
           <Tab.Screen
             name={routes.TABS.HOME_SCREEN_TAB}
             component={HomeStack}
