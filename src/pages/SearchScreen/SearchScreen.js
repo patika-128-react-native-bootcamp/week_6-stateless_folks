@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { View, FlatList, TouchableOpacity } from "react-native";
+import { View, FlatList, TouchableOpacity, Text } from "react-native";
 import Config from "react-native-config";
 import axios from "axios";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useTheme } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 
 import Search from "../../components/Search";
@@ -15,6 +15,7 @@ import routes from "../../navigation/routes";
 export default function SearchScreen() {
   const navigation = useNavigation();
   const { t } = useTranslation();
+  const { colors } = useTheme();
   const [searchTerm, setSearchTerm] = useState("");
   const [searchData, setSearchData] = useState({});
   const publicKey = Config.PUBLIC_KEY;
@@ -55,6 +56,15 @@ export default function SearchScreen() {
   };
   return (
     <View style={styles.container}>
+      <Text
+        style={[
+          styles.title,
+          {
+            color: colors.text,
+          },
+        ]}>
+        {t("Search")}
+      </Text>
       <Search
         size={30}
         icon="magnify"
