@@ -2,7 +2,7 @@
 
 # KnowYourHero Marvel Wiki App
 
-<img src="./src/images/app.gif" width="230px" height="500px" alt=""/>
+<img src="./src/images/showcase.gif" width="230px" height="500px" alt=""/>
 
 ## Installing packages:
 
